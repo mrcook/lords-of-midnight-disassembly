@@ -1,0 +1,909 @@
+THE LORDS OF MIDNIGHT 
+
+by Mike Singlton
+
+Beyond Software, 1984
+
+
+The following notes were taken from Chris Wild's icemark website:
+
+Data Formats:	https://www.icemark.com/dataformats/midnight/index.html
+Guidance		https://www.icemark.com/tower/guidance.htm
+
+
+## Token Dictionary
+
+Values 0x00 - 0xFA are the "token dictionary" ASCII lookup tokens:
+
+00	The			33	Ithrorn		66	Four		99	Horse		CC	None
+01	Lothoril	34	Whispers	67	Five		9A	Wolf		CD	Men
+02	Gloom		35	Xajorkith	68	Six			9B	Ice			CE	But
+03	Moon		36	Herath		69	Seven		9C	Troll		CF	His
+04	Mirrow		37	Kumar		6A	Eight		9D	Wild		D0	All
+05	Glorim		38	Marakith	6B	Nine		9E	Guard		D1	Utterly
+06	Korkith		39	Targ		6C	Ten			9F	Free		D2	Very
+07	Lost		3A	Utarg		6D	Remain		A0	Dark		D3	Slightly
+08	Dead		3B	Athoril		6E	Day			A1	Midnight	D4	Quite
+09	Weird		3C	Dregrim		6F	It			A2	Welcome		D5	Tired
+0A	Ugrak		3D	Dawn		70	Is			A3	Land		D6	Invigorated
+0B	Death		3E	Trorn		71	Night		A4	Must		D7	Command
+0C	Doom		3F	Coom		72	Luxor		A5	First		D8	Cannot
+0D	Despair		40	Of			73	Morkin		A6	Between		D9	Guidance
+0E	Vorgath		41	Mountain	74	Corleth		A7	New			DA	Voice
+0F	Ushgarak	42	Citadel		75	Rorthron	A8	Or			DB	Calls
+10	Ugrorn		43	Forest		76	Fawkrin		A9	Fear		DC	Shelter
+11	Kor			44	Henge		77	Farflame	AA	Load		DD	Refreshed
+12	Toomog		45	Tower		78	Korinel		AB	Fallen		DE	Which
+13	Ogrim		46	Village		79	Lord		AC	Foul		DF	Drain
+14	Dodrak		47	Down		7A	Fey			AD	Abroad		E0	Fill
+15	Gorgrath	48	Keep		7B	Wise		AE	Are			E1	Vigour
+16	Valethor	49	Snowhall	7C	Skulkrin	AF	Found		E2	Life
+17	Coroth		4A	Lake		7D	Dragon		B0	Nothing		E3	With
+18	Ashimar		4B	Waste		7E	Moonprince	B1	Search		E4	Hand
+19	Ithril		4C	Ruin		7F	Press		B2	Many		E5	Brings
+1A	Shadows		4D	Lith		80	Choose		B3	Eleven		E6	Sword
+1B	Blood		4E	Cavern		81	Key			B4	Twelve		E7	Slayer
+1C	Thrall		4F	Army		82	Save		B5	Thir		E8	Waters
+1D	Torkren		50	Plain		83	Others		B6	For			E9	Cup
+1E	Gard		51	Frozen		84	Game		B7	Fif			EA	Crown
+1F	Mitharg		52	Domain		85	Start		B8	Teen		EB	Destroy
+20	Moon		53	A			86	Tape		B9	Twenty		EC	Leads
+21	Iserath		54	In			87	And			BA	Hundred		ED	Can
+22	Shimeril	55	He			88	Enter		BB	Thousand	EE	Hide
+23	Odrark		56	Stand		89	Being		BC	No			EF	Hidden
+24	Ishmalay	57	North		8A	Has			BD	Have		F0	Seek
+25	Brith		58	South		8B	Been		BE	Pass		F1	Killed
+26	Silence		59	East		8C	Do			BF	War			F2	Afraid
+27	Elenil		5A	West		8D	You			C0	Solstice	F3	Bold
+28	Rorath		5B	Looking		8E	Want		C1	Began		F4	Cold
+29	Morning		5C	To			8F	Sure		C2	Since		F5	Mild
+2A	Thimrath	5D	At			90	Was			C3	Battle		F6	Recruit
+2B	Corelay		5E	On			91	Quit		C4	Rider		F7	Fight
+2C	Rathrorn	5F	Beside		92	Continue	C5	Warrior		F8	Wolves
+2D	Lorgrim		60	Less		93	Failed		C6	Alone		F9	Him
+2E	Lor			61	Than		94	Again		C7	Slew		FA	Ring
+2F	Fadrath		62	Hour		95	An			C8	Enemy
+30	Droon		63	One			96	Old			C9	Thinks
+31	Grarg		64	Two			97	Try			CA	Victory
+32	Dreams		65	Three		98	Ing			CB	Went
+
+Message formatting:
+
+FB	NEWLINE		Start a new line
+FC	UPPERCASE	Next token word is displayed as Title case
+FD	CONNECT		Do not add a space before this token
+FE	LITERAL		Next byte is an ASCII character and not a token
+FF	TERMINATOR	End of message
+
+
+
+
+## THINGS TO SEEK FOR . . .
+
+Notes on the coordinate system: the Coordinates are in the order ( y, x )
+where y is between 1 and 61 and x is between 0 and 63.
+
+### Guidance
+
+Coord		Description
+-----------+--------------------------------
+( 1,30)		Deadhenge
+( 1,62)		The Tower Of Lorgrim
+( 6,16)		A Lith In The Domain Of The Lost
+( 8,61)		The Tower Of Fadrath
+( 9,50)		Droonhenge
+(10, 6)		A Lith In The Domain Of Moon
+(10,12)		The Tower Of Lothoril
+(10,36)		The Tower Of Ugrorn
+(10,41)		The Lith Of Grarg
+(11,51)		A Lith In The Domain Of Ithril
+(12,45)		The Tower Of Dreams
+(15, 6)		A Lith In The Domain Of Mirrow
+(16,55)		The Lith Of Whispers
+(19,52)		A Lith In The Domain Of Ithril
+(22,36)		A Lith In The Domain Of Kor
+(22,44)		Korhenge
+(23,54)		Coomhenge
+(23,58)		The Tower Of Whispers
+(25,12)		The Tower Of Coroth
+(27,16)		The Lith Of Coroth
+(28, 7)		The Tower Of Ashimar
+(28,37)		The Tower Of Kor
+(29,44)		The Tower Of Marakith
+(31,60)		The Tower Of Kumar
+(31,61)		The Tower Of Athoril
+(32,18)		The Tower Of Dodrak
+(34,49)		The Lith Of Athoril
+(34,57)		A Lith In The Domain Of The Targ
+(41,12)		The Tower Of The Moon
+(46,60)		The Lith Of Dregrim
+(48,61)		The Tower Of Coom
+(49,14)		A Lith In The Domain Of Gard
+(50,38)		The Tower Of Morning
+(53,53)		The Tower Of Trorn
+(55, 6)		The Tower Of Elenil
+(55,14)		A Lith In The Domain Of Gard
+(61,36)		The Tower Of Corelay
+
+### Shadows of Death
+
+Coord		Description
+-----------+--------------------------------
+(11, 1)		Moonhenge
+(11,14)		A Ruin In The Domain Of Lothoril
+(25,62)		A Ruin In The Domain Of Kumar
+(31,25)		A Ruin In The Domain Of Valethor
+(42,52)		A Ruin In The Domain Of Athoril
+(43,26)		The Ruin Of Mitharg
+(46,39)		A Ruin In The Domain Of Dawn
+(48,44)		A Ruin In The Domain Of Corelay
+(52,61)		Trornhenge
+
+### Waters of Life
+
+Coord		Description
+-----------+--------------------------------
+( 2,46)		Lake Lor
+( 2,52)		Lorhenge
+( 2,61)		Lake Lorgrim
+( 4,35)		Lake Rathrorn
+( 5, 3)		Lake Gloom
+( 8,62)		Lake Fadrath
+( 9,21)		Lake Ugrak
+( 9,46)		A Lake In The Domain Of Ithril
+( 9,48)		A Lake In The Domain Of Ithril
+(10, 3)		A Lith In The Domain Of Moon
+(10,59)		A Lake In The Domain Of Droon
+(10,62)		A Lake In The Domain Of Lorgrim
+(11,12)		Lake Lothoril
+(11,34)		Lake Ugrorn
+(11,58)		Lake Droon
+(11,61)		A Lake In The Domain Of Ithril
+(14,43)		Lake Ithril
+(14,56)		A Lake In The Domain Of Ithril
+(16,12)		A Lith In The Domain Of Glorim
+(17,21)		A Lith In The Domain Of Kor
+(17,25)		Lake Moon
+(18, 9)		Lake Mirrow
+(18,56)		Lake Ithrorn
+(19,50)		A Lake In The Domain Of Ithril
+(20,16)		Lake Korkith
+(20,45)		A Lake In The Domain Of Ithril
+(21,25)		Lake Kor
+(21,33)		A Lith In The Domain Of Kor
+(21,45)		A Lake In The Domain Of Ithril
+(24,19)		Lake Gorgrath
+(24,52)		Lake Herath
+(25, 7)		Lake Ogrim
+(25,13)		Lake Dodrak
+(26, 4)		Lake Toomog
+(26,40)		A Lake In The Domain Of Kor
+(28,46)		Lake Kumar
+(29,26)		Lake Valethor
+(31,15)		A Lake In The Domain Of Valethor
+(32,40)		Lake Marakith
+(32,63)		A Lake In The Domain Of The Targ
+(33,62)		A Lake In The Domain Of The Targ
+(35,27)		Bloodhenge
+(35,35)		A Lith In The Domain Of Marakith
+(36,17)		The Lith Of Blood
+(36,41)		A Lake In The Domain Of Marakith
+(36,54)		Lake Utarg
+(38,26)		Lake Blood
+(39,34)		Lake Thrall
+(39,51)		Lake Athoril
+(40, 2)		Lake Ashimar
+(40,58)		A Lith In The Domain Of Athoril
+(44,22)		Lake Mitharg
+(44,40)		Lake Dawn
+(46,30)		Lake Shimeril
+(46,46)		A Lake In The Domain Of Dawn
+(47,60)		Lake Dregrim
+(48,38)		A Lake In The Domain Of Rorath
+(48,48)		A Lake In The Domain Of Trorn
+(49, 4)		Lake Torkren
+(49,36)		A Lake In The Domain Of Rorath
+(49,51)		Lake Trorn
+(51,12)		Lake Gard
+(51,47)		A Lake In The Domain Of Corelay
+(53, 9)		Lake Silence
+(53,35)		A Lake In The Domain Of Morning
+(53,38)		A Lake In The Domain Of Morning
+(54, 7)		Lake Elenil
+(55,49)		A Lake In The Domain Of Corelay
+(57,26)		Lake Odrark
+(57,51)		A Lake In The Domain Of Corelay
+(58, 2)		A Lake In The Domain Of Torkren
+(58, 6)		A Lake In The Domain Of Silence
+(58,54)		A Lake In The Domain Of Corelay
+(59,47)		A Lake In The Domain Of Corelay
+(60,23)		Lake Rorath
+(60,56)		A Lake In The Domain Of Corelay
+(61, 1)		A Lake In The Domain Of Torkren
+(61,38)		A Lake In The Domain Of Corelay
+
+### Hand of Dark
+
+Coord		Description
+-----------+--------------------------------
+( 2,13)		A Snowhall In The Domain Of The Lost
+( 2,34)		A Snowhall In The Domain Of Rathrorn
+( 2,63)		A Snowhall In The Domain Of Lorgrim
+(10,52)		A Snowhall In The Domain Of Ithril
+(11, 7)		The Cavern Of Moon
+(11,55)		The Cavern Of Ithril
+(15, 9)		The Ruin Of Glorim
+(24, 2)		Mirrowhenge
+(26,61)		The Cavern Of Kumar
+(30, 1)		A Snowhall In The Domain Of Ogrim
+(32,58)		A Ruin In The Domain Of The Targ
+(34,52)		A Cavern In The Domain Of The Targ
+(35,15)		The Ruin Of Dodrak
+(39,61)		A Ruin In The Domain Of The Targ
+(43, 5)		The Cavern Of Torkren
+(44,61)		The Cavern Of Dregrim
+(47, 2)		A Snowhall In The Domain Of Torkren
+(47,12)		A Ruin In The Domain Of Gard
+(55,62)		The Cavern Of Trorn
+(58,34)		The Cavern Of Corelay
+(60,35)		A Henge In The Domain Of Corelay
+(61,19)		The Ruin Of Brith
+
+### Cup of Dreams
+
+Coord		Description
+-----------+--------------------------------
+( 1,40)		The Lith Of Rathrorn
+( 3,20)		A Lith In The Domain Of The Lost
+( 4,18)		Weirdhenge
+( 5,57)		The Snowhall Of Lorgrim
+( 8, 1)		A Snowhall In The Domain Of Moon
+( 9, 4)		A Snowhall In The Domain Of Lothoril
+( 9,11)		A Henge In The Domain Of Lothoril
+( 9,27)		A Lith In The Domain Of Despair
+(10, 4)		A Lith In The Domain Of Moon
+(12, 4)		A Lith In The Domain Of Moon
+(12, 5)		A Lith In The Domain Of Moon
+(19,59)		The Lith Of Ithrorn
+(20,32)		A Lith In The Domain Of Kor
+(21,35)		A Lith In The Domain Of Kor
+(23,35)		A Lith In The Domain Of Kor
+(24,36)		A Lith In The Domain Of Kor
+(26,53)		The Lith Of Herath
+(31,16)		The Lith Of Valethor
+(35,41)		The Lith Of Marakith
+(35,47)		Thrallhenge
+(37,50)		A Lith In The Domain Of Athoril
+(42,40)		Dawnhenge
+(44,33)		A Lith In The Domain Of Iserath
+(47,14)		The Lith Of Mitharg
+(47,52)		A Lith In The Domain Of Trorn
+(48,16)		Gardhenge
+(51,14)		A Lith In The Domain Of Gard
+(53,14)		The Lith Of Gard
+(54,59)		A Lith In The Domain Of Trorn
+(57,57)		A Henge In The Domain Of Corelay
+(59, 1)		A Lith In The Domain Of Torkren
+(60,60)		A Lith In The Domain Of Corelay
+
+### The Ice Crown
+
+Coord		Description
+-----------+--------------------------------
+( 5,26)		Tower of Doom
+
+
+## THE MAIN PLACES OF MIDNIGHT
+
+In and around midnight are the key places that give the place its character.
+
+### The Citadels
+
+Coord		Description                 Coord		Description
+-----------+---------------------------+-----------+---------------------------
+( 1, 8)		The Citadel Of Gloom		( 6,22)		The Citadel Of Vorgath
+( 8,29)		The Citadel Of Ushgarak		( 8,37)		The Citadel Of Grarg
+(13,29)		The Citadel Of Kor			(16,57)		The Citadel Of Ithrorn
+(17,42)		The Citadel Of Dreams		(22,18)		The Citadel Of Korkith
+(30,24)		The Citadel Of Gorgrath		(30,57)		The Citadel Of Kumar
+(33,43)		The Citadel Of Marakith		(43,28)		The Citadel Of Shimeril
+(44,59)		The Citadel Of Dregrim		(46,44)		The Citadel Of Dawn
+(56,10)		The Citadel Of Gard			(60,45)		The Citadel Of Xajorkith 
+
+### The Henges
+
+( 1,30)		Deadhenge					( 2,52)		Lorhenge
+( 4,18)		Weirdhenge					( 9,50)		Droonhenge
+(11, 1)		Moonhenge					(22,44)		Korhenge
+(23,54)		Coomhene					(24, 2)		Mirrowhenge
+(35,27)		Bloodhenge					(35,47)		Thrallhenge
+(42,40)		Dawnhenge					(48,16)		Gardhenge
+(52,61)		Trornhenge			
+ 
+
+### The Towers
+
+( 1,62)		The Tower Of Lorgrim		( 5,26)		The Tower Of Doom
+( 8,61)		The Tower Of Fadrath		(10,12)		The Tower Of Lothoril
+(10,36)		The Tower Of Ugrorn			(12,45)		The Tower Of Dreams
+(23,58)		The Tower Of Whispers		(25,12)		The Tower Of Coroth
+(28, 7)		The Tower Of Ashimar		(28,37)		The Tower Of Kor
+(29,44)		The Tower Of Marakith		(31,60)		The Tower Of Kumar
+(31,61)		The Tower Of Athoril		(32,18)		The Tower Of Dodrak
+(41,12)		The Tower Of The Moon		(48,61)		The Tower Of Coom
+(50,38)		The Tower Of Morning		(53,53)		The Tower Of Trorn
+(55, 6)		The Tower Of Elenil			(61,36)		The Tower Of Corelay
+ 
+
+### The Villages
+
+(17,17)		The Village Of Korkith		(17,39)		The Village Of Dreams
+(18, 7)		The Village Of Mirrow		(21,60)		The Village Of Whispers
+(22,23)		The Village Of Kor			(24,13)		The Village Of Dodrak
+(25,54)		The Village Of Coom			(28,24)		The Village Of Gorgrath
+(37,57)		The Village Of The Targ		(38,48)		The Village Of Athoril
+(39,33)		The Village Of Thrall		(44,24)		The Village Of Mitharg
+(49,61)		The Village Of Dregrim		(50,23)		The Village Of Brith
+(51,57)		The Village Of Trorn		(52,30)		The Village Of Odrark
+(53,18)		The Village Of Ishmalay		(55,28)		The Village Of Rorath
+ 
+
+### The Keeps
+
+( 4,46)		The Keep Of Lorgrim			( 7,32)		The Keep Of Death
+( 9,57)		The Keep Of Fadrath			(11,11)		The Keep Of Lothoril
+(13,51)		The Keep Of Ithril			(13,62)		The Keep Of Droon
+(21,57)		The Keep Of Whispers		(23,31)		The Keep Of Kor
+(27,45)		The Keep Of Herath			(29,17)		The Keep Of Valethor
+(30,51)		The Keep Of Kumar			(34,13)		The Keep Of Dodrak
+(34,34)		The Keep Of Marakith		(35,59)		The Keep Of Utarg
+(37,21)		The Keep Of Blood			(39,54)		The Keep Of Athoril
+(42,55)		The Keep Of Dregrim			(43,17)		The Keep Of The Moon
+(44,37)		The Keep Of Dawn			(47,29)		The Keep Of Mitharg
+(48, 7)		The Keep Of Torkren			(48,10)		The Keep Of Gard
+(50,21)		The Keep Of Brith			(50,45)		The Keep Of Corelay
+(51,54)		The Keep Of Trorn			(52,39)		The Keep Of Morning
+(55,25)		The Keep Of Odrark			(56, 7)		The Keep Of Silence
+(57,17)		The Keep Of Ishmalay		(61,23)		The Keep Of Rorath
+(61,33)		The Keep Of Thimrath			
+ 
+
+### The Snowhalls
+
+( 2,39)		The Snowhall Of Rathrorn	( 5,57)		The Snowhall Of Lorgrim
+( 9,44)		The Snowhall Of Grarg		(17,62)		The Snowhall Of Whispers
+(18, 0)		The Snowhall Of Toomog		
+ 
+
+### The Lakes
+
+( 2,46)		Lake Lor					( 2,61)		Lake Lorgrim  
+( 4,35)		Lake Rathrorn				( 5, 3)		Lake Gloom
+( 8,62)		Lake Fadrath				( 9,21)		Lake Ugrak
+(11,12)		Lake Lothoril				(11,34)		Lake Ugrorn
+(11,58)		Lake Droon					(14,43)		Lake Ithril
+(17,25)		Lake Moon					(18, 9)		Lake Mirrow
+(18,56)		Lake Ithrorn				(20,16)		Lake Korkith
+(21,25)		Lake Kor					(24,19)		Lake Gorgrath
+(24,52)		Lake Herath					(25, 7)		Lake Ogrim
+(25,13)		Lake Dodrak					(26, 4)		Lake Toomog
+(28,46)		Lake Kumar					(29,26)		Lake Valethor
+(32,40)		Lake Marakith				(36,54)		Lake Utarg
+(38,26)		Lake Blood					(39,34)		Lake Thrall
+(39,51)		Lake Athoril				(40, 2)		Lake Ashimar
+(44,22)		Lake Mitharg				(44,40)		Lake Dawn
+(46,30)		Lake Shimeril				(47,60)		Lake Dregrim
+(49, 4)		Lake Torkren				(49,51)		Lake Trorn
+(51,12)		Lake Gard					(53, 9)		Lake Silence
+(54, 7)		Lake Elenil					(57,26)		Lake Odrark
+(60,23)		Lake Rorath			
+ 
+
+### The Ruins
+
+( 1,43)		The Ruin Of Rathrorn		( 7,19)		The Ruin Of Ugrak
+( 7,51)		The Ruin Of Droon			(15, 9)		The Ruin Of Glorim
+(20, 6)		The Ruin Of Ogrim			(24,12)		The Ruin Of Coroth
+(25,49)		The Ruin Of Herath			(28,23)		The Ruin Of Valethor
+(35,10)		The Ruin Of Ashimar			(35,15)		The Ruin Of Dodrak
+(42,29)		The Ruin Of Thrall			(43,26)		The Ruin Of Mitharg
+(46, 1)		The Ruin Of Torkren			(58,27)		The Ruin Of Rorath
+(61,15)		The Ruin Of Ishmalay		(61,19)		The Ruin Of Brith
+(61,20)		The Ruin Of Odrark			
+ 
+
+### The Liths
+
+( 1,40)		The Lith Of Rathrorn		( 3,54)		The Lith Of Lor  
+( 5,60)		The Lith Of Fadrath			( 7,55)		The Lith Of Droon
+(10,41)		The Lith Of Grarg			(16,55)		The Lith Of Whispers
+(19,59)		The Lith Of Ithrorn			(20,29)		The Lith Of Ugrorn
+(23,61)		The Lith Of Ithril			(26,53)		The Lith Of Herath
+(27,16)		The Lith Of Coroth			(27,59)		The Lith Of Kumar
+(30,63)		The Lith Of The Targ		(31,16)		The Lith Of Valethor
+(32,62)		The Lith Of Utarg			(34,49)		The Lith Of Athoril
+(35,41)		The Lith Of Marakith		(36,17)		The Lith Of Blood
+(38, 6)		The Lith Of Ashimar			(42,18)		The Lith Of The Moon
+(43,41)		The Lith Of Dawn			(45,29)		The Lith Of Shimeril
+(46,60)		The Lith Of Dregrim			(47,14)		The Lith Of Mitharg
+(47,19)		The Lith Of Odrark			(49,25)		The Lith Of Ishmalay
+(53,14)		The Lith Of Gard			(58,24)		The Lith Of Thimrath
+ 
+
+### The Caverns
+
+( 2,58)		The Cavern Of Lorgrim		( 4, 4)		The Cavern Of Gloom
+( 4,21)		The Cavern Of Death			( 5,24)		The Cavern Of Despair
+( 5,49)		The Cavern Of Lor			( 7,44)		The Cavern Of Rathrorn
+( 8,59)		The Cavern Of Droon			(11, 7)		The Cavern Of Moon
+(11,55)		The Cavern Of Ithril		(12,42)		The Cavern Of Grarg
+(16,63)		The Cavern Of Ithrorn		(17, 5)		The Cavern Of Toomog
+(18,45)		The Cavern Of Dreams		(26,61)		The Cavern Of Kumar
+(31, 7)		The Cavern Of Ogrim			(38,46)		The Cavern Of Athoril
+(40,35)		The Cavern Of Thrall		(43, 5)		The Cavern Of Torkren
+(44,15)		The Cavern Of Shadows		(44,61)		The Cavern Of Dregrim
+(51,19)		The Cavern Of Brith			(55,62)		The Cavern Of Trorn
+(58,34)		The Cavern Of Corelay			
+
+
+## CHARACTER STATISTICS
+
+All the characters in midnight have various stats that are used to work out how
+they will be affected by different things.
+
+Name						Race		Coord	Life	Eng		Str		Cou		Rid		War
+---------------------------+-----------+-------+-------+-------+-------+-------+-------+----
+Luxor The Moonprince		Free		(41,12)	180		127		 25		 80		   0	   0
+Morkin						Free		(41,12)	200		127		  5		127		   0	   0
+Corleth The Fey				Fey			(41,12)	180		127		 20		 96		   0	   0
+Rorthron The Wise			Wise		(41,12)	220		127		 40		 80		   0	   0
+The Lord Of Gard			Free		(56,10)	150		 64		 10		 64		 500	1000
+The Lord Of Marakith		Free		(33,43)	150		 64		 10		 64		 500	1000
+The Lord Of Xajorkith		Free		(60,45)	150		 64		 15		 64		 800	1200
+The Lord Of Gloom			Free		( 1, 8)	150		 64		 15		 56		 500	1000
+The Lord Of Shimeril		Free		(43,28)	150		 64		 15		 64		 800	1000
+The Lord Of Kumar			Free		(30,57)	150		 64		 10		 64		 700	1000
+The Lord Of Ithrorn			Free		(16,57)	150		 64		 15		 64		1000	1200
+The Lord Of Dawn			Free		(46,44)	120		 64		  8		 48		 500	 800
+The Lord Of Dreams			Fey			(17,42)	180		 64		 20		 90		 800	1200
+The Lord Of Dregrim			Fey			(44,59)	150		 64		 15		 80		 400	1000
+Thimrath The Fey			Fey			(61,33)	130		 64		 12		 90		 600	 400
+The Lord Of Whispers		Fey			(21,57)	150		 64		 12		 80		 300	 600
+The Lord Of Shadows			Fey			(38,11)	130		 64		 12		 70		   0	1000
+The Lord Of Lothoril		Fey			(11,11)	100		 64		  8		 60		 200	 500
+Korinel The Fey				Fey			(22,23)	120		 64		 12		 60		   0	1000
+The Lord Of Thrall			Fey			(39,33)	150		 64		 10		 70		 300	 600
+Lord Brith					Free		(50,21)	100		 64		  8		 40		 500	 300
+Lord Rorath					Free		(61,23)	100		 64		  8		 50		 800	 400
+Lord Trorn					Free		(51,54)	100		 64		  8		 35		 400	 800
+The Lord Of Morning			Free		(52,39)	120		 64		  8		 40		 300	 800
+Lord Athoril				Free		(39,54)	120		 64		  8		 50		 800	 300
+Lord Blood					Free		(37,21)	150		 64		 15		 80		1200	   0
+Lord Herath					Free		(27,45)	130		 64		  8		 40		 500	 600
+Lord Mitharg				Free		(47,29)	130		 64		  8		 50		 500	 600
+The Utarg Of Utarg			Targ		(35,59)	180		 64		 20		 80		1000	   0
+Fawkrin The Skulkrin		Skulkrin	(11, 1)	200		 64		  1		 30		   0	   0
+Lorgrim The Wise			Wise		( 1,62)	200		 64		 20		 70		   0	   0
+Farflame The DragonLord		Dragon		(24,12)	200		 64		100		127		   0	   0
+
+
+
+
+## CITADELS AND KEEPS
+
+Dotted around midnight are the Citadels and Keeps. These outposts house many
+useful soldiers or even the enemy. Only the correct race can recruit units
+from their own barracks, so plan your visit carefully and don't let them fall
+to the enemy.
+
+No	Race		Coord		Description							Units	Type
+---+-----------+-----------+-----------------------------------+-------+--------
+0	Free		( 1, 8)		The Citadel Of Gloom				 600	Warriors
+1	Free		( 4,46)		The Keep Of Lorgrim					 200	Riders
+2	Doomdark	( 5,28)		A Keep In The Domain Of Despair		 400	Warriors
+3	Doomdark	( 6,22)		The Citadel Of Vorgath				1000	Warriors
+4	Doomdark	( 7,32)		The Keep Of Death					 300	Riders
+5	Doomdark	( 8,23)		A Keep In The Domain Of Despair		 500	Warriors
+6	Doomdark	( 8,29)		The Citadel Of Ushgarak				1200	Riders
+7	Doomdark	( 8,37)		The Citadel Of Grarg				1100	Warriors
+8	Doomdark	( 9,40)		A Keep In The Domain Of Grarg		 400	Riders
+9	Free		( 9,57)		The Keep Of Fadrath					 300	Warriors
+10	Doomdark	(10,39)		A Keep In The Domain Of Grarg		 500	Warriors
+11	Fey			(11,11)		The Keep Of Lothoril				 200	Warriors
+12	Doomdark	(12,21)		A Keep In The Domain Of The Lost	 300	Warriors
+13	Doomdark	(12,25)		A Keep In The Domain Of Ugrak		 250	Warriors
+14	Doomdark	(13,29)		The Citadel Of Kor					1000	Riders
+15	Doomdark	(13,36)		A Keep In The Domain Of Kor			 300	Riders
+16	Free		(13,51)		The Keep Of Ithril					 200	Riders
+17	Free		(13,62)		The Keep Of Droon					 150	Warriors
+18	Doomdark	(14,16)		A Keep In The Domain Of Glorim		 200	Warriors
+19	Free		(14,55)		A Keep In The Domain Of Ithril		 300	Warriors
+20	Free		(16,57)		The Citadel Of Ithrorn				 700	Warriors
+21	Doomdark	(17,14)		A Keep In The Domain Of Glorim		 250	Warriors
+22	Doomdark	(17,27)		A Keep In The Domain Of Kor			 500	Warriors
+23	Doomdark	(17,34)		A Keep In The Domain Of Kor			 200	Warriors
+24	Fey			(17,42)		The Citadel Of Dreams				 550	Warriors
+25	Free		(17,52)		A Keep In The Domain Of Ithril		 150	Riders
+26	Doomdark	(18,19)		A Keep In The Domain Of Kor			 250	Warriors
+27	Doomdark	(19,22)		A Keep In The Domain Of Kor			 150	Warriors
+28	Free		(19,54)		A Keep In The Domain Of Ithril		 250	Warriors
+29	Doomdark	(21,14)		A Keep In The Domain Of Korkith		 100	Warriors
+30	Free		(21,49)		A Keep In The Domain Of Ithril		 300	Warriors
+31	Fey			(21,57)		The Keep Of Whispers				 150	Warriors
+32	Doomdark	(22,18)		The Citadel Of Korkith				 900	Warriors
+33	Doomdark	(22,42)		A Keep In The Domain Of Kor			 100	Warriors
+34	Doomdark	(23,31)		The Keep Of Kor						 350	Warriors
+35	Free		(23,46)		A Keep In The Domain Of Ithril		 400	Riders
+36	Doomdark	(24,39)		A Keep In The Domain Of Kor			 250	Warriors
+37	Free		(25,56)		A Keep In The Domain Of Herath		 200	Warriors
+38	Doomdark	(26,32)		A Keep In The Domain Of Kor			 200	Warriors
+39	Free		(27,45)		The Keep Of Herath					 300	Warriors
+40	Free		(27,54)		A Keep In The Domain Of Herath		 150	Riders
+41	Doomdark	(28,34)		A Keep In The Domain Of Valethor	 200	Riders
+42	Doomdark	(29,17)		The Keep Of Valethor				 250	Warriors
+43	Free		(29,42)		A Keep In The Domain Of Marakith	 250	Warriors
+44	Doomdark	(30,24)		The Citadel Of Gorgrath				1000	Warriors
+45	Doomdark	(30,30)		A Keep In The Domain Of Valethor	 150	Warriors
+46	Free		(30,51)		The Keep Of Kumar					 150	Riders
+47	Free		(30,57)		The Citadel Of Kumar				 600	Riders
+48	Targ		(32,55)		A Keep In The Domain Of The Targ	 200	Riders
+49	Doomdark	(33,21)		A Keep In The Domain Of Valethor	 300	Warriors
+50	Doomdark	(33,23)		A Keep In The Domain Of Valethor	 300	Warriors
+51	Free		(33,43)		The Citadel Of Marakith				 700	Warriors
+52	Free		(34,13)		The Keep Of Dodrak					 250	Warriors
+53	Free		(34,34)		The Keep Of Marakith				 150	Warriors
+54	Free		(35,30)		A Keep In The Domain Of Blood		 100	Riders
+55	Targ		(35,59)		The Keep Of Utarg					 350	Riders
+56	Free		(37,21)		The Keep Of Blood					 400	Warriors
+57	Free		(39,54)		The Keep Of Athoril					 150	Warriors
+58	Free		(40,27)		A Keep In The Domain Of Blood		 200	Warriors
+59	Free		(41,22)		A Keep In The Domain Of Blood		 200	Warriors
+60	Free		(41,25)		A Keep In The Domain Of Blood		 200	Warriors
+61	Free		(41,48)		A Keep In The Domain Of Dawn		 100	Warriors
+62	Free		(42,42)		A Keep In The Domain Of Dawn		 150	Riders
+63	Fey			(42,55)		The Keep Of Dregrim					 100	Riders
+64	Free		(43,17)		The Keep Of The Moon				 250	Riders
+65	Free		(43,28)		The Citadel Of Shimeril				 750	Warriors
+66	Free		(44,37)		The Keep Of Dawn					 100	Riders
+67	Fey			(44,59)		The Citadel Of Dregrim				 500	Warriors
+68	Free		(46,44)		The Citadel Of Dawn					 550	Warriors
+69	Free		(47,29)		The Keep Of Mitharg					 150	Warriors
+70	Free		(47,42)		A Keep In The Domain Of Dawn		 100	Riders
+71	Free		(48, 7)		The Keep Of Torkren					 150	Warriors
+72	Free		(48,10)		The Keep Of Gard					 250	Warriors
+73	Free		(49,48)		A Keep In The Domain Of Trorn		 200	Warriors
+74	Free		(50,21)		The Keep Of Brith					 150	Riders
+75	Free		(50,45)		The Keep Of Corelay					 250	Riders
+76	Free		(51,54)		The Keep Of Trorn					 150	Warriors
+77	Free		(52,39)		The Keep Of Morning					 200	Warriors
+78	Free		(52,42)		A Keep In The Domain Of Morning		 150	Warriors
+79	Free		(52,50)		A Keep In The Domain Of Trorn		 150	Warriors
+80	Free		(53,46)		A Keep In The Domain Of Corelay		 200	Warriors
+81	Free		(55,12)		A Keep In The Domain Of Gard		 250	Warriors
+82	Free		(55,25)		The Keep Of Odrark					 250	Warriors
+83	Free		(55,44)		A Keep In The Domain Of Corelay		 200	Warriors
+84	Free		(55,55)		A Keep In The Domain Of Corelay		 150	Warriors
+85	Free		(56, 7)		The Keep Of Silence					 100	Riders
+86	Free		(56,10)		The Citadel Of Gard					 600	Riders
+87	Free		(57,17)		The Keep Of Ishmalay				 250	Warriors
+88	Free		(57,21)		A Keep In The Domain Of Brith		 150	Warriors
+89	Free		(57,37)		A Keep In The Domain Of Corelay		 150	Warriors
+90	Free		(58, 8)		A Keep In The Domain Of Silence		 150	Warriors
+91	Free		(58,12)		A Keep In The Domain Of Gard		 200	Warriors
+92	Free		(59,39)		A Keep In The Domain Of Corelay		 200	Warriors
+93	Free		(59,56)		A Keep In The Domain Of Corelay		 250	Warriors
+94	Free		(59,63)		A Keep In The Domain Of Corelay		 150	Riders
+95	Free		(60,42)		A Keep In The Domain Of Corelay		 300	Warriors
+96	Free		(60,45)		The Citadel Of Xajorkith			 750	Riders
+97	Free		(61, 4)		A Keep In The Domain Of Torkren		  50	Riders
+98	Fey			(61,33)		The Keep Of Thimrath				 300	Riders
+99	Free		(61,23)		The Keep Of Rorath					 250	Riders
+100	Free		(61,59)		A Keep In The Domain Of Corelay		 250	Warriors
+101	Free		(61,14)		A Keep In The Domain Of Brith		 200	Warriors
+
+
+## RECRUITMENT
+
+				4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31
+	Luxor		X	X	X	X	X	X	X	X	-	-	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	-	X	-
+	Morkin		-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X
+	Corleth		X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	-	X	-	X
+	Rorthron	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X
+4	Gard		-	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+5	Marakith	X	-	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+6	Xajorkith	X	X	-	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+7	Gloom		X	X	X	-	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+8	Shimeril	X	X	X	X	-	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+9	Kumar		X	X	X	X	X	-	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+10	Ithrorn		X	X	X	X	X	X	-	X	X	X	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+11	Dawn		X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	X	-	-	-	-
+12	Dreams		X	X	X	X	X	X	X	X	-	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	-	X	-
+13	Dregrim		X	X	X	X	X	X	X	X	X	-	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	-	X	-
+14	Thimrath	-	-	-	-	-	-	-	-	X	X	-	X	X	X	X	X	-	-	-	-	-	-	-	-	-	-	X	-
+15	Whispers	-	-	-	-	-	-	-	-	X	X	X	-	X	X	X	X	-	-	-	-	-	-	-	-	-	-	X	-
+16	Shadows		-	-	-	-	-	-	-	-	X	X	X	X	-	X	X	X	-	-	-	-	-	-	-	-	-	-	X	-
+17	Lothoril	-	-	-	-	-	-	-	-	X	X	X	X	X	-	X	X	-	-	-	-	-	-	-	-	-	-	X	-
+18	Korinel		-	-	-	-	-	-	-	-	X	X	X	X	X	X	-	X	-	-	-	-	-	-	-	-	-	-	X	-
+19	Thrall		-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	-	-	-	X	-
+20	Brith		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	-	-	-	-
+21	Rorath		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	-	X	X	X	X	X	X	-	-	-	-
+22	Trorn		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	-	X	X	X	X	X	-	-	-	-
+23	Morning		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	-	X	X	X	X	-	-	-	-
+24	Athoril		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	-	X	X	X	-	-	-	-
+25	Blood		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	-	X	X	-	-	-	-
+26	Herath		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	-	X	-	-	-	-
+27	Mitharg		X	X	X	X	X	X	X	X	-	-	-	-	-	-	-	-	X	X	X	X	X	X	X	-	-	-	-	-
+28	Utarg		-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+29	Fawkrin		-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+30	Lorgrim		X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	-	X
+31	Farflame	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+
+
+
+## STRATEGIC PLACES
+
+Within the land of midnight lie strategic places that doomdark will send his
+armies to visit. these places point to two optional places to visit next.
+Any army visiting these these places will arrive and then decide where to visit
+next.
+
+
+ID		Coord		Location							A		B
+----+-----------+------------------------------------+------+--------
+0		( 1, 8)		The Citadel Of Gloom				 0		  0
+1		( 4,46)		The Keep Of Lorgrim					 1		 16
+2		( 5,28)		A Keep In The Domain Of Despair		 2		  6
+3		( 6,22)		The Citadel Of Vorgath				 3		104
+4		( 7,32)		The Keep Of Death					 4		  6
+5		( 8,23)		A Keep In The Domain Of Despair		 5		  3
+6		( 8,29)		The Citadel Of Ushgarak				 6		 14
+7		( 8,37)		The Citadel Of Grarg				 8		 10
+8		( 9,40)		A Keep In The Domain Of Grarg		 1		103
+9		( 9,57)		The Keep Of Fadrath					 9		  9
+10		(10,39)		A Keep In The Domain Of Grarg		 10		103
+11		(11,11)		The Keep Of Lothoril				 11		 11
+12		(12,21)		A Keep In The Domain Of The Lost	 13		 22
+13		(12,25)		A Keep In The Domain Of Ugrak		 26		 22
+14		(13,29)		The Citadel Of Kor					 22		 23
+15		(13,36)		A Keep In The Domain Of Kor			 22		 23
+16		(13,51)		The Keep Of Ithril					 19		 25
+17		(13,62)		The Keep Of Droon					 20		 20
+18		(14,16)		A Keep In The Domain Of Glorim		 21		 21
+19		(14,55)		A Keep In The Domain Of Ithril		 17		 20
+20		(16,57)		The Citadel Of Ithrorn				 31		110
+21		(17,14)		A Keep In The Domain Of Glorim		105		 29
+22		(17,27)		A Keep In The Domain Of Kor			 27		 34
+23		(17,34)		A Keep In The Domain Of Kor			 34		 41
+24		(17,42)		The Citadel Of Dreams				 24		 24
+25		(17,52)		A Keep In The Domain Of Ithril		 20		 20
+26		(18,19)		A Keep In The Domain Of Kor			 32		 32
+27		(19,22)		A Keep In The Domain Of Kor			 26		 32
+28		(19,54)		A Keep In The Domain Of Ithril		 20		 31
+29		(21,14)		A Keep In The Domain Of Korkith		 32		 32
+30		(21,49)		A Keep In The Domain Of Ithril		 25		 28
+31		(21,57)		The Keep Of Whispers				 37		 37
+32		(22,18)		The Citadel Of Korkith				 42		 42
+33		(22,42)		A Keep In The Domain Of Kor			 33		 35
+34		(23,31)		The Keep Of Kor						 38		 36
+35		(23,46)		A Keep In The Domain Of Ithril		 35		 30
+36		(24,39)		A Keep In The Domain Of Kor			 33		 39
+37		(25,56)		A Keep In The Domain Of Herath		 47		 55
+38		(26,32)		A Keep In The Domain Of Kor			 41		 41
+39		(27,45)		The Keep Of Herath					 40		 46
+40		(27,54)		A Keep In The Domain Of Herath		 37		 47
+41		(28,34)		A Keep In The Domain Of Valethor	 45		 45
+42		(29,17)		The Keep Of Valethor				 44		 50
+43		(29,42)		A Keep In The Domain Of Marakith	 46		 39
+44		(30,24)		The Citadel Of Gorgrath				 49		 50
+45		(30,30)		A Keep In The Domain Of Valethor	 44		 50
+46		(30,51)		The Keep Of Kumar					 47		 48
+47		(30,57)		The Citadel Of Kumar				 48		 55
+48		(32,55)		A Keep In The Domain Of The Targ	 55		 57
+49		(33,21)		A Keep In The Domain Of Valethor	 52		 56
+50		(33,23)		A Keep In The Domain Of Valethor	 56		 54
+51		(33,43)		The Citadel Of Marakith				 61		 62
+52		(34,13)		The Keep Of Dodrak					106		 64
+53		(34,34)		The Keep Of Marakith				 43		 51
+54		(35,30)		A Keep In The Domain Of Blood		 53		 58
+55		(35,59)		The Keep Of Utarg					 57		 63
+56		(37,21)		The Keep Of Blood					 59		 60
+57		(39,54)		The Keep Of Athoril					 61		 63
+58		(40,27)		A Keep In The Domain Of Blood		 65		 66
+59		(41,22)		A Keep In The Domain Of Blood		 64		 65
+60		(41,25)		A Keep In The Domain Of Blood		 65		 69
+61		(41,48)		A Keep In The Domain Of Dawn		 73		 76
+62		(42,42)		A Keep In The Domain Of Dawn		 66		 68
+63		(42,55)		The Keep Of Dregrim					 68		 76
+64		(43,17)		The Keep Of The Moon				 72		 74
+65		(43,28)		The Citadel Of Shimeril				111		 66
+66		(44,37)		The Keep Of Dawn					 70		102
+67		(44,59)		The Citadel Of Dregrim				 67		 67
+68		(46,44)		The Citadel Of Dawn					 70		 73
+69		(47,29)		The Keep Of Mitharg					 70		 74
+70		(47,42)		A Keep In The Domain Of Dawn		 78		 75
+71		(48, 7)		The Keep Of Torkren					 86		 85
+72		(48,10)		The Keep Of Gard					 81		 81
+73		(49,48)		A Keep In The Domain Of Trorn		 75		 79
+74		(50,21)		The Keep Of Brith					 82		 88
+75		(50,45)		The Keep Of Corelay					 80		 83
+76		(51,54)		The Keep Of Trorn					 84		 94
+77		(52,39)		The Keep Of Morning					 82		 89
+78		(52,42)		A Keep In The Domain Of Morning		 77		 83
+79		(52,50)		A Keep In The Domain Of Trorn		 76		 94
+80		(53,46)		A Keep In The Domain Of Corelay		 83		 96
+81		(55,12)		A Keep In The Domain Of Gard		 86		 91
+82		(55,25)		The Keep Of Odrark					102		102
+83		(55,44)		A Keep In The Domain Of Corelay		 96		 96
+84		(55,55)		A Keep In The Domain Of Corelay		 93		 96
+85		(56, 7)		The Keep Of Silence					 90		 90
+86		(56,10)		The Citadel Of Gard					 85		 91
+87		(57,17)		The Keep Of Ishmalay				 88		109
+88		(57,21)		A Keep In The Domain Of Brith		109		 82
+89		(57,37)		A Keep In The Domain Of Corelay		 92		 92
+90		(58, 8)		A Keep In The Domain Of Silence		 91		101
+91		(58,12)		A Keep In The Domain Of Gard		101		 87
+92		(59,39)		A Keep In The Domain Of Corelay		 95		 95
+93		(59,56)		A Keep In The Domain Of Corelay		 96		 96
+94		(59,63)		A Keep In The Domain Of Corelay		 93		100
+95		(60,42)		A Keep In The Domain Of Corelay		 96		 96
+96		(60,45)		The Citadel Of Xajorkith			 96		 96
+97		(61, 4)		A Keep In The Domain Of Torkren		 91		101
+98		(61,33)		The Keep Of Thimrath				 92		 95
+99		(61,23)		The Keep Of Rorath					 82		102
+100		(61,59)		A Keep In The Domain Of Corelay		 96		 96
+101		(61,14)		A Keep In The Domain Of Brith		 99		 99
+
+The following few are just incidental strategic places.
+
+ID		Coord		Location							A		B
+----+-----------+------------------------------------+------+--------
+102		(58,27)		The Ruin Of Rorath					 98		 98
+103		(12,42)		The Cavern Of Grarg					 15		 15
+104		( 4,18)		WeirdHenge							 12		 18
+105		(22, 7)		A Lith In The Domain Of Ogrim		 52		106
+106		(38, 6)		The Lith Of Ashimar					107		 72
+107		(40, 2)		LakeAshimar							108		108
+108		(48, 0)		The Plains Of Torkren				 71		 97
+109		(61,20)		The Ruin Of Odrark					 99		 99
+110		(25,62)		A Ruin In The Domain Of Kumar		 47		 55
+111		(45,29)		The Lith Of Shimeril				 68		 69
+
+
+
+## DOOMDARK'S REGIMENTS
+
+Doomdark has 128 free roaming regiments. These soldiers perform specfic tasks
+or wander through the strategic places.
+
+ID		Coord		Location							No		Type		Orders
+----+-----------+------------------------------------+------+--------------+----------------------------
+0		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+1		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+2		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+3		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+4		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+5		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+6		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+7		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+8		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+9		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Luxor
+10		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Morkin
+11		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Corleth The Fey
+12		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Rorthron The Wise
+13		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Gard
+14		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Marakith
+15		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Xajorkith
+16		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Shimeril
+17		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Kumar
+18		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Ithrorn
+19		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Dawn
+20		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Dregrim
+21		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Thimrath The Fey
+22		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Shadows
+23		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Thrall
+24		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Brith
+25		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Rorath
+26		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Trorn
+27		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow The Lord Of Morning
+28		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Athoril
+29		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Blood
+30		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Herath
+31		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Lord Mitharg
+32		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+33		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+34		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+35		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+36		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+37		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+38		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+39		( 8,29)		The Citadel Of Ushgarak				1200	Riders		Heading To 6
+40		( 6,22)		The Citadel Of Vorgath				1200	Warriors	Heading To 3
+41		( 6,22)		The Citadel Of Vorgath				1200	Warriors	Heading To 3
+42		( 6,22)		The Citadel Of Vorgath				1200	Warriors	Heading To 3
+43		( 6,22)		The Citadel Of Vorgath				1200	Warriors	Heading To 3
+44		( 8,37)		The Citadel Of Grarg				1200	Warriors	Heading To 7
+45		( 8,37)		The Citadel Of Grarg				1200	Warriors	Heading To 7
+46		( 8,37)		The Citadel Of Grarg				1200	Warriors	Heading To 7
+47		( 8,37)		The Citadel Of Grarg				1200	Warriors	Heading To 7
+48		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Morkin
+49		( 8,29)		The Citadel Of Ushgarak				1000	Riders		Follow Morkin
+50		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+51		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+52		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+53		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+54		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+55		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+56		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+57		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+58		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+59		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+60		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+61		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+62		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+63		(13,29)		The Citadel Of Kor					1200	Warriors	Heading To 14
+64		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+65		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+66		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+67		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+68		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+69		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+70		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+71		(13,29)		The Citadel Of Kor					1200	Riders		Heading To 14
+72		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+73		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+74		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+75		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+76		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+77		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+78		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+79		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+80		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+81		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+82		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+83		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+84		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+85		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+86		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+87		(22,18)		The Citadel Of Korkith				1200	Warriors	Heading To 32
+88		(22,18)		The Citadel Of Korkith				1200	Riders		Heading To 32
+89		(22,18)		The Citadel Of Korkith				1200	Riders		Heading To 32
+90		(22,18)		The Citadel Of Korkith				1200	Riders		Heading To 32
+91		(22,18)		The Citadel Of Korkith				1200	Riders		Heading To 32
+92		(30,24)		The Citadel Of Gorgrath				1200	Warriors	Heading To 44
+93		(30,24)		The Citadel Of Gorgrath				1200	Warriors	Heading To 44
+94		(30,24)		The Citadel Of Gorgrath				1200	Warriors	Heading To 44
+95		(30,24)		The Citadel Of Gorgrath				1200	Warriors	Heading To 44
+96		(22, 7)		A Lith In The Domain Of Ogrim		1000	Riders		Wandering
+97		(17,27)		A Keep In The Domain Of Kor			1000	Riders		Wandering
+98		( 9,40)		A Keep In The Domain Of Grarg		1000	Riders		Wandering
+99		(24,39)		A Keep In The Domain Of Kor			1000	Riders		Wandering
+100		(33,21)		A Keep In The Domain Of Valethor	1000	Riders		Wandering
+101		(33,23)		A Keep In The Domain Of Valethor	1000	Riders		Wandering
+102		(29,17)		The Keep Of Valethor				1000	Warriors	Wandering
+103		( 4,18)		WeirdHenge							1000	Warriors	Wandering
+104		(30,30)		A Keep In The Domain Of Valethor	1000	Warriors	Wandering
+105		(14,16)		A Keep In The Domain Of Glorim		1000	Warriors	Wandering
+106		(23,31)		The Keep Of Kor						1000	Warriors	Wandering
+107		(38, 6)		The Lith Of Ashimar					1000	Warriors	Wandering
+108		( 8,29)		The Citadel Of Ushgarak				1200	Warriors	Going To 6
+109		( 8,29)		The Citadel Of Ushgarak				1200	Warriors	Going To 6
+110		( 8,29)		The Citadel Of Ushgarak				1200	Warriors	Going To 6
+111		( 8,29)		The Citadel Of Ushgarak				1200	Warriors	Going To 6
+112		(13,29)		The Citadel Of Kor					1200	Warriors	Going To 6
+113		( 6,22)		The Citadel Of Vorgath				1200	Warriors	Going To 6
+114		( 8,37)		The Citadel Of Grarg				1200	Warriors	Going To 6
+115		( 8,23)		A Keep In The Domain Of Despair		1200	Warriors	Going To 6
+116		( 5,28)		A Keep In The Domain Of Despair		1200	Warriors	Going To 6
+117		(12,25)		A Keep In The Domain Of Ugrak		1200	Warriors	Going To 14
+118		(13,36)		A Keep In The Domain Of Kor			1200	Warriors	Going To 7
+119		( 9,40)		A Keep In The Domain Of Grarg		1200	Warriors	Going To 7
+120		(10,39)		A Keep In The Domain Of Grarg		1200	Warriors	Going To 7
+121		( 7,32)		The Keep Of Death					1200	Warriors	Going To 6
+122		(12,21)		A Keep In The Domain Of The Lost	1200	Warriors	Going To 3
+123		(10,29)		The Plains Of Despair				1000	Riders		Going To 6
+124		( 8,33)		The Plains Of Despair				1000	Riders		Going To 6
+125		( 7,30)		The Plains Of Despair				1000	Riders		Going To 6
+126		( 7,27)		The Plains Of Despair				1000	Riders		Going To 6
+127		( 8,26)		The Plains Of Despair				1000	Riders		Going To 6
+
+														143400 total soldiers

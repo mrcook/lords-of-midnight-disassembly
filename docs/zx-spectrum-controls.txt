@@ -1,0 +1,63 @@
+THE LORDS OF MIDNIGHT 
+
+by Mike Singlton
+
+Beyond Software, 1984
+
+
+CONTROLS : Keyboard
+
+8 1 2
+7 * 3	DIRECTIONS
+6 5 4
+
+Q	Move in current direction
+E	Look in current direction
+R	Think
+T	Choose
+U	Night
+S	Save
+D	Load
+G	Yes
+J	No
+Z	Print (crashes most emulators)
+C	Select Luxor
+V	Select Morkin
+B	Select Corleth
+N	Select Rorthron
+M	Select 
+
+In Select mode:
+
+1	The Lord of Gard
+2	The Lord of Marakith
+3	The Lord of Xajorkith
+4	The Lord of Gloom
+5	The Lord of Shimeril
+6	The Lord of Kumar
+7	The Lord of Ithrorn
+8	The Lord of Dawn
+9	The Lord of Dreams
+0	The Lord of Dregrim
+Q	Thrimrath the Fey
+W	The Lord of Whispers
+E	The Lord of Shadows
+R	The Lord of Lothoril
+T	Korinel the Fey
+Y	The Lord of Thrall
+U	Lord Brith
+I	Lord Rorath
+O	Lord Trorn
+P	The Lord of Morning
+A	Lord Athoril
+S	Lord Blood
+D	Lord Herath
+F	Lord Mitharg
+G	The Utarg of Utarg
+H	Fawkrin the Skulkrin
+J	Lorgrim the Wise
+K	Farflame the Dragonlord
+C	Luxor the Moonprince
+V	Morkin
+N	Corleth the Fey
+M	Rorthron the Wise

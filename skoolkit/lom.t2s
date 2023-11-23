@@ -1,0 +1,9 @@
+; tap2sna.py file for Lords of Midnight cassette version. Run
+;
+;   $ tap2sna.py @lom.t2s
+;
+; to create a Z80 snapshot.
+https://tzxvault.org/Spectrum/TZX/TheLordsOfMidnight.zip
+--tape-name "The Lords Of Midnight - Side 1.tzx"
+--tape-sum c68e7f4102c977bea4c59f2b823e8ab0
+--start 23317
