@@ -54,11 +54,11 @@ of the game are.
 
 Download and extract `.z80` binary with the following command:
 
-    ap2sna.py -f @lom.t2s
+    tap2sna.py -f @lom.t2s
 
 The `.skool` can be generated using the provided `.ctl` file:
 
-    na2skool.py -I LineWidth=96 -c lom.ctl -H lom.z80 > lom.skool
+    sna2skool.py -I LineWidth=96 -c lom.ctl -H lom.z80 > lom.skool
 
 When editing the `.skool` file directly, the `.ctl` file should be re-generated:
 
